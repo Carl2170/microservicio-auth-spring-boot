@@ -1,0 +1,40 @@
+type Mutation {
+    login(email: String!,
+         password: String!): AuthResponse
+
+    register(nombre: String!,
+            apellidos: String!,
+            email: String!,
+            telefono: String!,
+            direccion: String!,
+            password: String!,
+            tipoUsuario: String): AuthResponse
+
+    registrarEmpleado(
+        nombre: String,
+        apellidos: String,
+        email: String,
+        telefono: String,
+        direccion: String,
+        password: String,
+        tipoUsuario: String,
+        salario: Float,
+        cargo: String
+    ): EmpleadoResponse
+
+    modificarEmpleado(id: ID!, empleadoInput: EmpleadoInput): EmpleadoResponse
+    eliminarEmpleado(id: String!): String
+
+    registerCliente(
+        nombre: String!,
+        apellidos: String!,
+        email: String!,
+        telefono: String!,
+        direccion: String!,
+        password: String!,
+        tipoUsuario: String): ClienteResponse
+
+    modificarCliente(id: ID!, clienteInput: RegisterInput): ClienteResponse
+    eliminarCliente(id: String!): String
+
+}

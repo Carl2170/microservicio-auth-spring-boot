@@ -1,0 +1,106 @@
+type User {
+    id: String!
+    nombre: String!
+    apellidos: String!
+    email: String!
+    telefono: String!
+    direccion: String!
+    password: String!
+    imageUrl: String!
+    roles: [Role!]
+}
+
+type Empleado {
+    id: String!
+    nombre: String!
+    apellidos: String!
+    email: String!
+    telefono: String!
+    direccion: String!
+    password: String!
+    imageUrl: String!
+    roles: [Role!]
+    detalleEmpleado: DetalleEmpleado
+}
+
+type Cliente {
+    id: String!
+    nombre: String!
+    apellidos: String!
+    email: String!
+    telefono: String!
+    direccion: String!
+    password: String!
+    imageUrl: String!
+    roles: [Role!]
+}
+
+type DetalleEmpleado {
+    id: String
+    salario: Float
+    cargo: String
+}
+
+
+input LoginInput{
+    email: String!,
+    password: String!
+}
+
+type AuthResponse {
+    user: User!
+    token: String!
+}
+
+type EmpleadoResponse {
+    nombre: String
+    apellidos: String
+    email: String
+    telefono: String
+    direccion: String
+    password: String
+    tipoUsuario: String
+    salario: Float
+    cargo: String
+}
+
+type ClienteResponse {
+    nombre: String
+    apellidos: String
+    email: String
+    telefono: String
+    direccion: String
+    password: String
+    tipoUsuario: String
+}
+
+input EmpleadoInput {
+    nombre: String
+    apellidos: String
+    email: String
+    telefono: String
+    direccion: String
+    password: String
+    salario: Float
+    cargo: String
+}
+
+input RegisterInput {
+    nombre: String!,
+    apellidos: String!,
+    email: String!,
+    telefono: String!,
+    direccion: String!,
+    password: String!,
+    tipoUsuario: String
+}
+
+type Role {
+    name: String!
+}
+
+type UsersPage {
+    users: [User]
+    totalCount: Int
+    totalPages: Int
+}
