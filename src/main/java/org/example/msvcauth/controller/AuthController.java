@@ -5,6 +5,8 @@ import org.example.msvcauth.authentication.JwtUtils;
 import org.example.msvcauth.domain.AuthResponse;
 import org.example.msvcauth.domain.User;
 import org.example.msvcauth.domain.input.UserInput;
+import org.example.msvcauth.exceptions.MessageError;
+import org.example.msvcauth.exceptions.UserNotRegisteredException;
 import org.example.msvcauth.services.AuthService;
 import org.example.msvcauth.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class AuthController {
 
         User user = userService.findByEmail(email);
         if (user == null) {
-            throw new IllegalArgumentException("El usuario no está registrado");
+            throw new UserNotRegisteredException("El usuario no está registrado");
         }
 
         String token = authService.login(email, password);
@@ -40,7 +42,7 @@ public class AuthController {
                                  @Argument String password,
                                  @Argument String tipoUsuario) {
         if (userService.findByEmail(email) != null) {
-            throw new IllegalArgumentException("El usuario ya está registrado");
+            throw new MessageError("El usuario ya está registrado");
         }
 
         UserInput input = new UserInput(nombre, apellidos, email,telefono, direccion, password, tipoUsuario);

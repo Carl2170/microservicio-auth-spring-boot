@@ -7,6 +7,7 @@ import org.example.msvcauth.domain.EmpleadoResponse;
 import org.example.msvcauth.domain.input.ClienteInput;
 import org.example.msvcauth.domain.input.EmpleadoInput;
 import org.example.msvcauth.domain.input.UserInput;
+import org.example.msvcauth.exceptions.MessageError;
 import org.example.msvcauth.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class UserController {
                                  @Argument String password,
                                  @Argument String tipoUsuario) {
         if (userService.findByEmail(email) != null) {
-            throw new IllegalArgumentException("El usuario ya está registrado");
+            throw new MessageError("El usuario ya está registrado");
         }
 
         UserInput input = new UserInput(nombre, apellidos, email,telefono, direccion, password, "CLIENTE");

@@ -3,6 +3,7 @@ package org.example.msvcauth.services;
 import org.example.msvcauth.authentication.JwtUtils;
 import graphql.GraphQLException;
 import org.example.msvcauth.domain.AuthResponse;
+import org.example.msvcauth.exceptions.MessageError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,7 +39,7 @@ public class AuthService {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             return JwtUtils.generateToken(userDetails.getUsername());
         } catch (AuthenticationException e) {
-            throw new GraphQLException("Credenciales invalidos");
+            throw new MessageError("Credenciales invalidos");
         }
     }
 }
